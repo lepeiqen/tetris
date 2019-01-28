@@ -18,7 +18,7 @@ createdate:2016.9.29
 import random,copy
 import pygame as pg
 from pygame.locals import *
-import sys #lpq
+import sys # lpq
 
 '''
 常量声明
@@ -186,8 +186,8 @@ def sysInit():
     
     #pygame运行环境初始化
     pg.init()
-    screen=pg.display.set_mode((500,550))
-    backSurface=pg.Surface((screen.get_rect().width,screen.get_rect().height))
+    screen=pg.display.set_mode((500,550)) # lpq Initialize a window or screen for display
+    backSurface=pg.Surface((screen.get_rect().width,screen.get_rect().height)) # lpq Surface is used to represent any image
     pg.display.set_caption("block")
     clock=pg.time.Clock()
     pg.mouse.set_visible(False)
@@ -292,7 +292,7 @@ def checkDeany(sprite):
                 xInStage=topX+x
                 if yInStage>maxBlockHeight-1 or yInStage<0:
                     return True
-                if xInStage>maxBlockWidth-1 or xInStage<0:
+                if xInStage>maxBlockWidth-1 or xInStage<0: # why width? lpq
                     return True
                 if stage[yInStage][xInStage]==STATIC_BLOCK:
                     return True                
@@ -390,7 +390,7 @@ def drawStage(drawScreen):
     baseRect=0,0,blockWidth*maxBlockWidth+1,blockHeight*maxBlockHeight+1        #堆叠区方框
     
     #绘制堆叠区外框
-    drawScreen.fill((180,200,170))
+    drawScreen.fill((180,200,170)) # lpq surface
     pg.draw.rect(drawScreen, staticColor, baseRect,1)
     
     #绘制堆叠区内的所有方块，包括下落方块形状
@@ -470,6 +470,10 @@ def process():
                 else:
                     pause=True
                     return
+            elif event.key==pg.K_LEFT:# add lpq
+                    tmpBlock.xy=point(tmpBlock.xy.x-1,tmpBlock.xy.y)
+            elif event.key==pg.K_RIGHT:
+                    tmpBlock.xy=point(tmpBlock.xy.x+1,tmpBlock.xy.y)
             elif not gameOver and not pause:
                 if event.key==pg.K_SPACE:
                     tmpBlock.chgDirection(1)
@@ -486,20 +490,8 @@ def process():
         if keys[K_DOWN]:
             tmpBlock.xy=point(tmpBlock.xy.x,tmpBlock.xy.y+1)
             keyBuff=None
-        elif keys[K_LEFT]:
-            if keyBuff!=pg.K_LEFT:
-                tmpBlock.xy=point(tmpBlock.xy.x-1,tmpBlock.xy.y)
-                keyBuff=pg.K_LEFT
-            else:
-                keyBuff=None
-        elif keys[K_RIGHT]:
-            if keyBuff!=pg.K_RIGHT:
-                tmpBlock.xy=point(tmpBlock.xy.x+1,tmpBlock.xy.y)
-                keyBuff=pg.K_RIGHT
-            else:
-                keyBuff=None
         if not checkDeany(tmpBlock):
-            updateStage(nowBlock,0)
+            updateStage(nowBlock,0) # lpq clear 1st;
             nowBlock=tmpBlock.clone()
         
         #处理自动下落
