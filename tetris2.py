@@ -18,7 +18,7 @@ createdate:2016.9.29
 import random,copy
 import pygame as pg
 from pygame.locals import *
-import sys # lpq for python3.5
+import sys # lpq for sys.exit error
 
 '''
 常量声明
