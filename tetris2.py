@@ -18,7 +18,7 @@ createdate:2016.9.29
 import random,copy
 import pygame as pg
 from pygame.locals import *
-import sys # lpq
+import sys # lpq for python3.5
 
 '''
 常量声明
@@ -292,7 +292,7 @@ def checkDeany(sprite):
                 xInStage=topX+x
                 if yInStage>maxBlockHeight-1 or yInStage<0:
                     return True
-                if xInStage>maxBlockWidth-1 or xInStage<0: # why width? lpq
+                if xInStage>maxBlockWidth-1 or xInStage<0: # lpq notice: the object out of boundary in width direction
                     return True
                 if stage[yInStage][xInStage]==STATIC_BLOCK:
                     return True                
